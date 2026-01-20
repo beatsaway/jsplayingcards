@@ -1,10 +1,9 @@
 
 # Deck of Cards
-100% JavaScript playing cards demos with both 2D and 3D versions.
-## Why this is useful
-- Learn how to render playing cards in pure HTML/CSS/JS.
-- Compare a lightweight 2D approach with a Three.js 3D approach.
-- Use as a starter for card games, UI experiments, or graphics demos.
+Simple playing cards demos with both 2D and 3D versions for web.
+- A deck of playing cards built in pure HTML/CSS/JS.
+- Two versions: a lightweight 2D approach and a Three.js 3D approach.
+- Suitable as a starter for card games, UI experiments, or graphics demos.
 
 ## Demos
 - https://jsplayingcards.netlify.app/
