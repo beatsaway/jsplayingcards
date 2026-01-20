@@ -2,76 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Interactive JavaScript playing cards demos: a lightweight Unicode deck and a Three.js 3D version."
+    />
+    <meta name="theme-color" content="#0f172a" />
     <title>Deck of Cards</title>
     <style>
       :root {
         color-scheme: light;
+        --bg: #f1f5f9;
+        --bg-deep: #e2e8f0;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+        --accent: #2563eb;
+        --accent-soft: #eef2ff;
+        --focus: 0 0 0 3px rgba(37, 99, 235, 0.3);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
         font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: #f8fafc;
-        color: #0f172a;
+        background: radial-gradient(circle at top, #ffffff, var(--bg) 42%, var(--bg-deep));
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
       }
 
       .page {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        padding: 24px clamp(16px, 4vw, 40px) 40px;
       }
 
       header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 24px;
+        gap: 16px;
       }
 
-      .brand {
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+      .repo-link {
         font-size: 13px;
-        color: #0f172a;
       }
 
       .hero {
         flex: 1;
         display: grid;
         place-items: center;
-        padding: 20px;
+        padding-top: clamp(20px, 4vw, 40px);
       }
 
       .card {
-        width: min(760px, 94vw);
+        width: min(960px, 100%);
         display: grid;
-        gap: 18px;
-        padding: 32px;
-        border-radius: 16px;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        gap: clamp(18px, 3vw, 26px);
+        padding: clamp(22px, 4vw, 40px);
+        border-radius: 24px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
       }
 
       h1 {
-        font-size: clamp(26px, 4.2vw, 36px);
+        font-size: clamp(26px, 4vw, 40px);
         margin: 0;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
       }
 
       p {
         margin: 0;
-        color: #334155;
+        color: var(--muted);
         font-size: 16px;
         line-height: 1.6;
-      }
-
-      .actions {
-        display: grid;
-        gap: 10px;
       }
 
       ul {
@@ -79,38 +98,87 @@
         padding: 0;
         margin: 0;
         display: grid;
-        gap: 10px;
+        gap: 16px;
+      }
+
+      ul.actions {
+        display: grid;
+        gap: 16px;
+      }
+
+      .action-list {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
       .item {
         display: grid;
-        gap: 4px;
+        gap: 10px;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: #f8fafc;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          border-color 0.15s ease;
       }
 
-      .item-desc {
-        margin: 0;
-        color: #475569;
-        font-size: 14px;
-        line-height: 1.5;
+      .item:hover,
+      .item:focus-within {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+        border-color: #cbd5f5;
       }
 
       a {
-        display: block;
-        padding: 14px 16px;
-        border-radius: 12px;
         text-decoration: none;
-        color: #0f172a;
-        background: #f1f5f9;
-        border: 1px solid #e2e8f0;
+        color: var(--accent);
         font-weight: 600;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
 
       a:hover,
       a:focus-visible {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
         outline: none;
+        color: #1d4ed8;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text);
+        background: #e2e8f0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.15s ease, background-color 0.15s ease;
+      }
+
+      .cta:hover,
+      .cta:focus-visible {
+        transform: translateY(-1px);
+        outline: none;
+        background: #cbd5f5;
+      }
+
+      .cta:focus-visible {
+        box-shadow: var(--focus);
+      }
+
+      .cta.primary {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .cta.primary:hover,
+      .cta.primary:focus-visible {
+        background: #1d4ed8;
+      }
+
+      .cta.secondary {
+        background: #e2e8f0;
+        color: var(--accent);
       }
 
       a.plain-link {
@@ -121,7 +189,7 @@
         border: 0;
         box-shadow: none;
         text-decoration: none;
-        color: #1d4ed8;
+        color: var(--accent);
         font-weight: 600;
       }
 
@@ -137,7 +205,53 @@
         flex-wrap: wrap;
         gap: 12px 16px;
         font-size: 13px;
-        color: #475569;
+        color: var(--muted);
+        overflow-wrap: anywhere;
+      }
+
+      .meta a.plain-link {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      @media (max-width: 720px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .card {
+          border-radius: 18px;
+        }
+
+        .item {
+          padding: 12px;
+        }
+
+        .meta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-height: 640px) {
+        .hero {
+          place-items: start;
+        }
+
+        .card {
+          margin-top: 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto;
+          transition: none !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
       }
 
     </style>
@@ -145,36 +259,38 @@
   <body>
     <div class="page">
       <header>
-        <div class="brand">Deck of Cards</div>
+        <a class="plain-link repo-link" href="https://github.com/beatsaway/jsplayingcards">
+            https://github.com/beatsaway/jsplayingcards</a>
       </header>
       <section class="hero">
         <main class="card">
-          <h1>100% JavaScript Playing Cards.</h1>
-          
-          <div class="actions">
-            <ul>
-              <li class="item">
-                <a href="basic/basic.html">Basic Demo</a>
-                <p class="item-desc">
-                    A deck built entirely with Unicode characters, HTML, CSS, and JavaScript. 16KB.
-                </p>
-              </li>
-              <li class="item">
-                <a href="threejs_version/3jsdeck.html">Three.js Demo</a>
-                <p class="item-desc">
-                  3D version using Three.js card meshes. 70KB.
-                </p>
-              </li>
-            </ul>
-          </div>
+          <h1>A Deck of Playing Cards</h1>
+          <p>Built entirely with Unicode characters, HTML, CSS, and JavaScript.</p>
+          <ul class="actions action-list">
+            <li class="item">
+              <span
+                class="cta primary"
+                role="link"
+                tabindex="0"
+                onclick="location.href='basic/basic.html'"
+                onkeydown="if (event.key === 'Enter' || event.key === ' ') { location.href='basic/basic.html'; }"
+              >Basic Demo (16KB)</span>
+            </li>
+            <li class="item">
+              <span
+                class="cta secondary"
+                role="link"
+                tabindex="0"
+                onclick="location.href='threejs_version/3jsdeck.html'"
+                onkeydown="if (event.key === 'Enter' || event.key === ' ') { location.href='threejs_version/3jsdeck.html'; }"
+              >Three.js Demo (70KB)</span>
+            </li>
+          </ul>
           <div class="meta">
-            <span>Code:</span>
-            <a class="plain-link" href="https://github.com/beatsaway/playingcards"
-              >https://github.com/beatsaway/playingcards</a
-            >
-            <span>Support:</span>
+
+            <span>If you enjoy using this,</span>
             <a class="plain-link" href="https://buymeacoffee.com/beatsaway"
-              >buymeacoffee.com/beatsaway</a
+              >buymeacoffee.com/beatsaway 🤗☕</a
             >
           </div>
         </main>
