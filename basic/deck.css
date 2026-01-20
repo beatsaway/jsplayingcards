@@ -1,0 +1,294 @@
+:root {
+  color-scheme: light;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: #f2f3f5;
+  margin: 0;
+  padding: 24px;
+}
+.deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 14px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.card {
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 7px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: 110px;
+  aspect-ratio: 5 / 7;
+  height: auto;
+  padding: 10px;
+  position: relative;
+  box-sizing: border-box;
+}
+.card.back {
+  overflow: hidden;
+  padding: 10px;
+  border: 0;
+  --back-base: #ffffff;
+  --back-ink: #0f172a;
+  --back-pattern: #f87171;
+  --back-pattern-strong: #f87171;
+  --back-glow: #f87171;
+  --back-pop: #f43f5e;
+  background: var(--back-base);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.1);
+}
+.card.back::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  border: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.card.back::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 6px;
+  border: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.card.back .back-pattern {
+  position: absolute;
+  inset: 10px;
+  border-radius: 4px;
+  z-index: 1;
+  box-sizing: border-box;
+  border: 2px solid var(--back-pattern-strong);
+  overflow: hidden;
+}
+.card.back.back-1 {
+  background: var(--back-base);
+}
+.card.back.back-1 .back-pattern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(var(--back-pattern) 2.45px, transparent 0px),
+    radial-gradient(var(--back-pattern) 1.4px, transparent 0px);
+  
+  background-size: 7px 7px, 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+.card.back.back-2 {
+  background: var(--back-base);
+}
+.card.back.back-2 .back-pattern {
+  background:
+    radial-gradient(var(--back-pattern) 1.5px, transparent 0px),
+    radial-gradient(var(--back-pattern) 2px, transparent 0px);
+  background-size: 6px 6px, 9px 9px;
+  background-position: 1px 1px, 3px 2px;
+}
+.card.back.back-3 {
+  background: var(--back-base);
+}
+.card.back.back-3 .back-pattern {
+  background:
+  radial-gradient(var(--back-pattern) 1.5px, transparent 0px),
+  radial-gradient(var(--back-pattern) 3px, transparent 0px);
+background-size: 6px 6px, 9px 9px;
+background-position: 1px 1px, 3px 2px;
+}
+.card.back.back-4 {
+  background: var(--back-base);
+}
+.card.back.back-4 .back-pattern {
+  background:
+  radial-gradient(var(--back-pattern) 1.65px, transparent 0px),
+  radial-gradient(var(--back-pattern) 1.1px, transparent 0px);
+
+background-size: 7px 7px, 4px 4px;
+background-position: 0 0, 2px 2px;
+}
+.card .corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+}
+.card .corner.top {
+  top: 5px;
+  left: 5px;
+}
+.card .corner.bottom {
+  bottom: 5px;
+  right: 5px;
+  transform: rotate(180deg);
+}
+.card .center {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  font-weight: 600;
+}
+.card .center.face-emoji {
+  flex-direction: column;
+  gap: 0;
+}
+.card .center.face-emoji .emoji {
+  display: inline-block;
+  font-size: 60px;
+  line-height: 1;
+}
+.card .center.face-emoji .emoji.flipped {
+  transform: rotate(180deg);
+}
+.card .center.pips-stack {
+  display: block;
+}
+.card .pips {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  padding: 13px 20px;
+  font-size: 30px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+.card .center.pips-stack .pips {
+  position: absolute;
+  inset: 0;
+}
+.card .pips.pips-4 {
+  grid-template-rows: repeat(4, 1fr);
+}
+.card .pips .pip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card.rank-2 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 2; }
+.card.rank-2 .pips .pip:nth-child(2) { grid-row: 5; grid-column: 2; }
+.card.rank-3 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 2; }
+.card.rank-3 .pips .pip:nth-child(2) { grid-row: 3; grid-column: 2; }
+.card.rank-3 .pips .pip:nth-child(3) { grid-row: 5; grid-column: 2; }
+.card.rank-4 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-4 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-4 .pips .pip:nth-child(3) { grid-row: 5; grid-column: 1; }
+.card.rank-4 .pips .pip:nth-child(4) { grid-row: 5; grid-column: 3; }
+.card.rank-5 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-5 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-5 .pips .pip:nth-child(3) { grid-row: 3; grid-column: 2; }
+.card.rank-5 .pips .pip:nth-child(4) { grid-row: 5; grid-column: 1; }
+.card.rank-5 .pips .pip:nth-child(5) { grid-row: 5; grid-column: 3; }
+.card.rank-6 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-6 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-6 .pips .pip:nth-child(3) { grid-row: 3; grid-column: 1; }
+.card.rank-6 .pips .pip:nth-child(4) { grid-row: 3; grid-column: 3; }
+.card.rank-6 .pips .pip:nth-child(5) { grid-row: 5; grid-column: 1; }
+.card.rank-6 .pips .pip:nth-child(6) { grid-row: 5; grid-column: 3; }
+.card.rank-7 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-7 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-7 .pips .pip:nth-child(3) { grid-row: 2; grid-column: 2; }
+.card.rank-7 .pips .pip:nth-child(4) { grid-row: 3; grid-column: 1; }
+.card.rank-7 .pips .pip:nth-child(5) { grid-row: 3; grid-column: 3; }
+.card.rank-7 .pips .pip:nth-child(6) { grid-row: 5; grid-column: 1; }
+.card.rank-7 .pips .pip:nth-child(7) { grid-row: 5; grid-column: 3; }
+.card.rank-8 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-8 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-8 .pips .pip:nth-child(3) { grid-row: 2; grid-column: 2; }
+.card.rank-8 .pips .pip:nth-child(4) { grid-row: 3; grid-column: 1; }
+.card.rank-8 .pips .pip:nth-child(5) { grid-row: 3; grid-column: 3; }
+.card.rank-8 .pips .pip:nth-child(6) { grid-row: 4; grid-column: 2; }
+.card.rank-8 .pips .pip:nth-child(7) { grid-row: 5; grid-column: 1; }
+.card.rank-8 .pips .pip:nth-child(8) { grid-row: 5; grid-column: 3; }
+.card.rank-9 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-9 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-9 .pips .pip:nth-child(3) { grid-row: 2; grid-column: 2; }
+.card.rank-9 .pips .pip:nth-child(4) { grid-row: 3; grid-column: 1; }
+.card.rank-9 .pips .pip:nth-child(5) { grid-row: 3; grid-column: 2; }
+.card.rank-9 .pips .pip:nth-child(6) { grid-row: 3; grid-column: 3; }
+.card.rank-9 .pips .pip:nth-child(7) { grid-row: 4; grid-column: 2; }
+.card.rank-9 .pips .pip:nth-child(8) { grid-row: 5; grid-column: 1; }
+.card.rank-9 .pips .pip:nth-child(9) { grid-row: 5; grid-column: 3; }
+.card.rank-10 .pips .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-10 .pips .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-10 .pips .pip:nth-child(3) { grid-row: 2; grid-column: 1; }
+.card.rank-10 .pips .pip:nth-child(4) { grid-row: 2; grid-column: 3; }
+.card.rank-10 .pips .pip:nth-child(5) { grid-row: 3; grid-column: 1; }
+.card.rank-10 .pips .pip:nth-child(6) { grid-row: 3; grid-column: 3; }
+.card.rank-10 .pips .pip:nth-child(7) { grid-row: 4; grid-column: 1; }
+.card.rank-10 .pips .pip:nth-child(8) { grid-row: 4; grid-column: 3; }
+.card.rank-10 .pips .pip:nth-child(9) { grid-row: 5; grid-column: 1; }
+.card.rank-10 .pips .pip:nth-child(10) { grid-row: 5; grid-column: 3; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(3) { grid-row: 3; grid-column: 1; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(4) { grid-row: 3; grid-column: 3; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(5) { grid-row: 5; grid-column: 1; }
+.card.rank-7 .pips.layout-6 .pip:nth-child(6) { grid-row: 5; grid-column: 3; }
+.card.rank-7 .pips.pips-4.mid-1 .pip:nth-child(1) { grid-row: 2; grid-column: 2; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(3) { grid-row: 2; grid-column: 1; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(4) { grid-row: 2; grid-column: 3; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(5) { grid-row: 3; grid-column: 1; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(6) { grid-row: 3; grid-column: 3; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(7) { grid-row: 4; grid-column: 1; }
+.card.rank-8 .pips.layout-8 .pip:nth-child(8) { grid-row: 4; grid-column: 3; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(3) { grid-row: 2; grid-column: 1; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(4) { grid-row: 2; grid-column: 3; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(5) { grid-row: 3; grid-column: 1; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(6) { grid-row: 3; grid-column: 3; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(7) { grid-row: 4; grid-column: 1; }
+.card.rank-9 .pips.layout-8 .pip:nth-child(8) { grid-row: 4; grid-column: 3; }
+.card.rank-9 .pips.mid-1 .pip:nth-child(1) { grid-row: 3; grid-column: 2; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(1) { grid-row: 1; grid-column: 1; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(2) { grid-row: 1; grid-column: 3; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(3) { grid-row: 2; grid-column: 1; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(4) { grid-row: 2; grid-column: 3; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(5) { grid-row: 3; grid-column: 1; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(6) { grid-row: 3; grid-column: 3; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(7) { grid-row: 4; grid-column: 1; }
+.card.rank-10 .pips.layout-8 .pip:nth-child(8) { grid-row: 4; grid-column: 3; }
+.card.rank-10 .pips.mid-2 .pip:nth-child(1) { grid-row: 2; grid-column: 2; }
+.card.rank-10 .pips.mid-2 .pip:nth-child(2) { grid-row: 4; grid-column: 2; }
+.card.rank-2 .pips .pip:nth-child(2),
+.card.rank-3 .pips .pip:nth-child(3),
+.card.rank-4 .pips .pip:nth-child(3),
+.card.rank-4 .pips .pip:nth-child(4),
+.card.rank-5 .pips .pip:nth-child(4),
+.card.rank-5 .pips .pip:nth-child(5),
+.card.rank-6 .pips .pip:nth-child(5),
+.card.rank-6 .pips .pip:nth-child(6) {
+  transform: rotate(180deg);
+}
+.card.rank-7 .pips.layout-6 .pip:nth-child(5),
+.card.rank-7 .pips.layout-6 .pip:nth-child(6),
+.card.rank-8 .pips.layout-8 .pip:nth-child(7),
+.card.rank-8 .pips.layout-8 .pip:nth-child(8),
+.card.rank-9 .pips.layout-8 .pip:nth-child(7),
+.card.rank-9 .pips.layout-8 .pip:nth-child(8),
+.card.rank-10 .pips.layout-8 .pip:nth-child(7),
+.card.rank-10 .pips.layout-8 .pip:nth-child(8) {
+  transform: rotate(180deg);
+}
+.red {
+  color: #c32323;
+}
+.black {
+  color: #111;
+}

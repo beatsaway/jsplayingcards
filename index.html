@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deck of Cards</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 13px;
+        color: #0f172a;
+      }
+
+      .hero {
+        flex: 1;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .card {
+        width: min(760px, 94vw);
+        display: grid;
+        gap: 18px;
+        padding: 32px;
+        border-radius: 16px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      }
+
+      h1 {
+        font-size: clamp(26px, 4.2vw, 36px);
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      p {
+        margin: 0;
+        color: #334155;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .item {
+        display: grid;
+        gap: 4px;
+      }
+
+      .item-desc {
+        margin: 0;
+        color: #475569;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      a {
+        display: block;
+        padding: 14px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #0f172a;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        font-weight: 600;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      a:hover,
+      a:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+        outline: none;
+      }
+
+      a.plain-link {
+        display: inline;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        border: 0;
+        box-shadow: none;
+        text-decoration: none;
+        color: #1d4ed8;
+        font-weight: 600;
+      }
+
+      a.plain-link:hover,
+      a.plain-link:focus-visible {
+        transform: none;
+        box-shadow: none;
+        color: #1d4ed8;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        font-size: 13px;
+        color: #475569;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">Deck of Cards</div>
+      </header>
+      <section class="hero">
+        <main class="card">
+          <h1>100% JavaScript Playing Cards.</h1>
+          
+          <div class="actions">
+            <ul>
+              <li class="item">
+                <a href="basic/basic.html">Basic Demo</a>
+                <p class="item-desc">
+                    A deck built entirely with Unicode characters, HTML, CSS, and JavaScript. 16KB.
+                </p>
+              </li>
+              <li class="item">
+                <a href="threejs_version/3jsdeck.html">Three.js Demo</a>
+                <p class="item-desc">
+                  3D version using Three.js card meshes. 70KB.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="meta">
+            <span>Code:</span>
+            <a class="plain-link" href="https://github.com/beatsaway/playingcards"
+              >https://github.com/beatsaway/playingcards</a
+            >
+            <span>Support:</span>
+            <a class="plain-link" href="https://buymeacoffee.com/beatsaway"
+              >buymeacoffee.com/beatsaway</a
+            >
+          </div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

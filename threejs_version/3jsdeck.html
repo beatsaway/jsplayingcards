@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deck of Cards</title>
+    <link rel="stylesheet" href="deck.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #three-root {
+        position: fixed;
+        inset: 0;
+      }
+
+      #three-root canvas {
+        display: block;
+      }
+
+      #card-staging {
+        position: fixed;
+        left: -9999px;
+        top: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      header {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 10;
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      header label {
+        font-size: 14px;
+        color: #1f2937;
+      }
+
+      header select {
+        font-size: 14px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <label for="layout-mode">Layout</label>
+      <select id="layout-mode">
+        <option value="grid" selected>Grid</option>
+        <option value="dance">Dance</option>
+        <option value="float">Float</option>
+        <option value="spiral">Spiral</option>
+        <option value="helix">Helix</option>
+        <option value="fountain">Fountain</option>
+        <option value="circle">Circle</option>
+        <option value="ring">Ring</option>
+        <option value="ripple">Ripple</option>
+        <option value="scatter">Scatter</option>
+        <option value="flip">Flip</option>
+      </select>
+    </header>
+    <div id="three-root"></div>
+    <div id="card-staging" data-back-variant="4"></div>
+    <script src="deck.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="three-scene.js"></script>
+  </body>
+</html>
